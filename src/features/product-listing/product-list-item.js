@@ -5,10 +5,11 @@ export default class ProductListItem extends React.Component{
         super(props);
     }
     render(){
+       const thisitemincart=this.props.cart.filter((item)=>item.id === this.props.product.id)[0];
        console.log('this.props',this.props.product);
        const{name,image,description,price}=this.props.product;
         return(
-         <div>
+         <div className="product-list-item">
              <h3>{name}</h3>
           <img  
            height={100}
@@ -19,7 +20,7 @@ export default class ProductListItem extends React.Component{
           <div>{description}</div>
           <div> ${price} </div>
           <div>
-          <button>Add to cart </button>
+          <button onClick={()=>this.props.addToCart(this.props.product)}>Add to cart({(thisitemincart && thisitemincart.quantity) || 0}) </button>
             </div>
 
              </div>
